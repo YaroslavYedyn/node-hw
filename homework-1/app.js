@@ -17,7 +17,7 @@ function readDir(pathName) {
                     console.log(err1);
                     return;
                 }
-                if (stats.isDirectory() === true) {
+                if (stats.isDirectory()) {
                     return readDir(pathFile);
                 } else {
                     const newPath = path.join(__dirname, 'time',fileName)
