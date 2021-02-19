@@ -43,6 +43,17 @@ app.get('/auth', (req, res) => {
     res.render('auth')
 })
 
+app.get('/users/:userId', (req, res) => {
+    fs.readFile(pathFiles, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        const users = JSON.parse(data.toString())
+        const {userId} = req.params
+        res.json(users[userId])
+    })
+})
+
 app.post('/auth', (req, res) => {
     const newUser = req.body
     const {username} = req.body
