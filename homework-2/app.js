@@ -50,7 +50,8 @@ app.get('/users/:userId', (req, res) => {
         }
         const users = JSON.parse(data.toString())
         const {userId} = req.params
-        res.json(users[userId])
+        const user = users[userId]
+        res.render('user', {user})
     })
 })
 
