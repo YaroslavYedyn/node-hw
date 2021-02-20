@@ -73,7 +73,6 @@ app.post('/auth', (req, res) => {
     }
 })
 
-
 app.post('/login', (req, res) => {
     const {username, password} = req.body
     users.some((value) => {
@@ -85,3 +84,18 @@ app.post('/login', (req, res) => {
     })
 })
 
+//===============REMOVE USER===============
+// видалення працює але не завжди не оновляє нормально json файл,коли перезапускаю проект юзер пропадає :) незнаю як виправити
+app.post('/users/:userId', (req, res) => {
+    const {userId} = req.params
+    console.log(userId);
+    const filterUsers = users.filter((value, index) => index !== +userId)
+    const newUsers = JSON.stringify(filterUsers)
+    fs.writeFile(pathFiles, newUsers, err => {
+        if (err) {
+            console.log(err);
+        }
+        res.redirect('/auth')
+    })
+})
+//===============REMOVE USER===============

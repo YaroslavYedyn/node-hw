@@ -15,6 +15,9 @@
     password: {{this.user.password}},
     age: {{this.user.age}},
     lastname: {{this.user.lastname}}
+    <form action="/users/{{this.userId}}" method="post">
+        <button type="submit">Remove</button>
+    </form>
 </div>
 </body>
 </html>
