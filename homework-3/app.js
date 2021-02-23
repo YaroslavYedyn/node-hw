@@ -5,7 +5,6 @@ const apiRouter = require('./router/api.router')
 
 const app = express();
 
-const appPath = __dirname;
 const port = 5050;
 
 app.use(express.json());
@@ -18,5 +17,3 @@ app.use('/', apiRouter);
 app.listen(port, () => {
     console.log(`App listen ${port}`)
 })
-
-module.exports = appPath;
