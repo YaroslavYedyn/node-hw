@@ -2,7 +2,6 @@ const fs = require('fs');
 const {promisify} = require('util');
 const path = require('path');
 
-
 const readFilePromise = promisify(fs.readFile)
 const writeFilePromise = promisify(fs.writeFile)
 
@@ -19,20 +18,18 @@ const readFile = async () => {
 }
 readFile();
 
-module.exports = {
-    findUsers: () => {
-        return users;
-    },
-    findUserById: (userId) => {
-        return users[userId]
 
-    },
-    createUser: async (newUser) => {
-        users.push(newUser)
-        return await writeFilePromise(pathFile, JSON.stringify(users))
-    },
-    removeUser: (userId) => {
-        const filterUsers = users.filter(((value, index) => index !== +userId))
-        writeFilePromise(pathFile, JSON.stringify(filterUsers))
+module.exports = {
+    searchUser: (query) => {
+        if (Object.keys(query).length === 2) {
+            return users.filter((value,) => (value.username === query.username) && (value.email === query.email))
+        }
+        if (!!query.username) {
+            return users.filter((value,) => (value.username === query.username))
+        }
+        if (!!query.email) {
+            return users.filter((value,) => (value.email === query.email))
+        }
+
     }
 }

@@ -7,6 +7,7 @@ const errorMessages = require('../constant/error.messages')
 
 const readFilePromise = promisify(fs.readFile)
 const pathFile = path.join(process.cwd(), 'database', 'users.json')
+
 let users = []
 
 const readFile = async () => {

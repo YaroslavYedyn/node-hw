@@ -5,24 +5,23 @@ module.exports = {
         const users = userService.findUsers()
         res.json(users);
     },
+
     getSingleUser: (req, res) => {
         const {userId} = req.params
         const user = userService.findUserById(userId)
         res.json(user)
     },
+
     createUser: (req, res) => {
         const newUser = req.body
         const user = userService.createUser(newUser)
-        return 'Done'
+        res.status(201).json('users is created').end()
 
     },
+
     removeUser: (req, res) => {
-        const userId = req.body.userId
+        const {userId} = req.params
         userService.removeUser(userId)
-        res.status(201).json('users is created')
-    },
-    findUser: (req, res) => {
-        console.log('sadsad');
-        res.status(201).json('users is created')
+        res.status(201).json('users is remove')
     }
 }
