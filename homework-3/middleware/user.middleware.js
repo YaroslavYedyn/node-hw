@@ -36,18 +36,19 @@ module.exports = {
     },
     isUserValid: (req, res, next) => {
         try {
-            const {username, password, email} = req.body;
+            const {username, password, email, preferL} = req.body;
+
 
             if (!username || !password) {
-                throw new Error(errorMessages.EMPTY);
+                throw new Error(errorMessages.EMPTY[preferL]);
             }
 
             if (password.length < 6) {
-                throw new Error(`${errorMessages.TOO_WEAK}${password.length}`);
+                throw new Error(`${errorMessages.TOO_WEAK[preferL]}${password.length}`);
             }
             users.some(value => {
                 if (value.email === email) {
-                    throw new Error(errorMessages.NOT_EXISTS);
+                    throw new Error(errorMessages.NOT_EXISTS[preferL]);
                 }
             })
 
