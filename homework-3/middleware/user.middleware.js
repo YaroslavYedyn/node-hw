@@ -2,6 +2,9 @@ const fs = require('fs');
 const {promisify} = require('util');
 const path = require('path');
 
+const errorCodes = require('../constant/errorCodes.enum')
+const errorMessages = require('../constant/error.messages')
+
 const readFilePromise = promisify(fs.readFile)
 const pathFile = path.join(process.cwd(), 'database', 'users.json')
 let users = []
@@ -22,34 +25,34 @@ module.exports = {
             const userId = +req.params.userId;
 
             if (userId < 0 || !Number.isInteger(userId) || Number.isNaN(userId)) {
-                throw new Error('Not Valid ID');
+                throw new Error(`${errorMessages.NOT_VALID} UserID = ${userId}`);
             }
 
             next();
         } catch (e) {
-            res.status(201).json(e.message);
+            res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
     },
     isUserValid: (req, res, next) => {
         try {
-            const {username, password, email, preferL = 'en'} = req.body;
+            const {username, password, email} = req.body;
 
             if (!username || !password) {
-                throw new Error('Some filed is empty');
+                throw new Error(errorMessages.EMPTY);
             }
 
             if (password.length < 6) {
-                throw new Error('sdasda');
+                throw new Error(`${errorMessages.TOO_WEAK}${password.length}`);
             }
             users.some(value => {
                 if (value.email === email) {
-                    throw new Error('such a user already exists');
+                    throw new Error(errorMessages.NOT_EXISTS);
                 }
             })
 
             next();
         } catch (e) {
-            res.status(401).json(e.message);
+            res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
     }
 }

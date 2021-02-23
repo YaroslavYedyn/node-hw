@@ -20,5 +20,9 @@ module.exports = {
         const userId = req.body.userId
         userService.removeUser(userId)
         res.status(201).json('users is created')
+    },
+    findUser: (req, res) => {
+        console.log('sadsad');
+        res.status(201).json('users is created')
     }
 }
