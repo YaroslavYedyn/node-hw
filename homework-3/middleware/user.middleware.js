@@ -26,7 +26,7 @@ module.exports = {
             const userId = +req.params.userId;
 
             if (userId < 0 || !Number.isInteger(userId) || Number.isNaN(userId)) {
-                throw new Error(`${errorMessages.NOT_VALID} UserID = ${userId}`);
+                throw new Error(`${errorMessages.NOT_VALID["default"]} UserID = ${userId}`);
             }
 
             next();
