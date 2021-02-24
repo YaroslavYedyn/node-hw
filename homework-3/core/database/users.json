@@ -1,1 +1,20 @@
-[{"username":"bohdan2","password":"bohdan12345","email":"bodya@gmail.com","preferL":"ua"},{"username":"vasya","password":"vasya12345","email":"vasya@gmail.com","preferL":"ua"},{"username":"vasya2","password":"test2","email":"vasya@gmail.com","preferL":"ua"}]
+[
+  {
+    "username": "bohdan2",
+    "password": "bohdan12345",
+    "email": "bodya@gmail.com",
+    "preferL": "ua"
+  },
+  {
+    "username": "vasya",
+    "password": "vasya12345",
+    "email": "vasya@gmail.com",
+    "preferL": "ua"
+  },
+  {
+    "username": "vdasya2",
+    "password": "test2",
+    "email": "vasya@gmail.com",
+    "preferL": "ua"
+  }
+]
