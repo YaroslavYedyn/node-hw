@@ -43,7 +43,7 @@ module.exports = {
                 throw new Error(errorMessages.EMPTY[preferL]);
             }
 
-            if (password.length < 6) {
+            if (password.length < 8) {
                 throw new Error(`${errorMessages.TOO_WEAK[preferL]}${password.length}`);
             }
             users.some(value => {
@@ -52,6 +52,23 @@ module.exports = {
                 }
             })
 
+            next();
+        } catch (e) {
+            res.status(errorCodes.BAD_REQUEST).json(e.message);
+        }
+    },
+    newDataValid: (req, res, next) => {
+        try {
+            const {username, password, email, preferL} = req.body;
+
+
+            if (!username || !password) {
+                throw new Error(errorMessages.EMPTY[preferL]);
+            }
+
+            if (password.length < 8) {
+                throw new Error(`${errorMessages.TOO_WEAK[preferL]}${password.length}`);
+            }
             next();
         } catch (e) {
             res.status(errorCodes.BAD_REQUEST).json(e.message);

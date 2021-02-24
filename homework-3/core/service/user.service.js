@@ -25,12 +25,13 @@ module.exports = {
     },
     findUserById: (userId) => {
         return users[userId]
-
     },
+
     createUser: async (newUser) => {
         users.push(newUser)
         return await writeFilePromise(pathFile, JSON.stringify(users))
     },
+
     updateUser: (userId, newData) => {
         users.forEach((value, index) => {
             if (index === +userId) {
@@ -40,6 +41,7 @@ module.exports = {
         writeFilePromise(pathFile, JSON.stringify(users));
         return users;
     },
+
     removeUser: (userId) => {
         const filterUsers = users.filter(((value, index) => index !== +userId))
         writeFilePromise(pathFile, JSON.stringify(filterUsers))
