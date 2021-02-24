@@ -1,4 +1,5 @@
 const userService = require('../service/user.service');
+const statusCode = require('../constant/errorCodes.enum')
 
 module.exports = {
     getAllUsers: (req, res) => {
@@ -11,26 +12,41 @@ module.exports = {
     },
 
     getSingleUser: (req, res) => {
-        const {userId} = req.params;
-        const user = userService.findUserById(userId);
-        res.json(user);
+        try {
+            const {userId} = req.params;
+            const user = userService.findUserById(userId);
+            res.json(user);
+        } catch (e) {
+            res.status(statusCode.BAD_REQUEST).json(e.message);
+        }
     },
 
     createUser: (req, res) => {
-        const newUser = req.body;
-        const user = userService.createUser(newUser);
-        res.status(201).json('users is created').end();
-
+        try {
+            const newUser = req.body;
+            const user = userService.createUser(newUser);
+            res.status(201).json('users is created').end();
+        } catch (e) {
+            res.status(statusCode.BAD_REQUEST).json(e.message);
+        }
     },
 
     updateUser: (req, res) => {
-        const users = userService.updateUser(req.params.id, req.body);
-        res.json(users);
+        try {
+            const users = userService.updateUser(req.params.id, req.body);
+            res.json(users);
+        } catch (e) {
+            res.status(statusCode.BAD_REQUEST).json(e.message);
+        }
     },
 
     removeUser: (req, res) => {
-        const {userId} = req.params;
-        userService.removeUser(userId);
-        res.status(201).json('users is remove');
+        try {
+            const {userId} = req.params;
+            userService.removeUser(userId);
+            res.status(201).json('users is remove');
+        } catch (e) {
+            res.status(statusCode.BAD_REQUEST).json(e.message);
+        }
     }
 }
