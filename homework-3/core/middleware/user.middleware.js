@@ -2,20 +2,20 @@ const fs = require('fs');
 const {promisify} = require('util');
 const path = require('path');
 
-const errorCodes = require('../constant/errorCodes.enum')
-const errorMessages = require('../constant/error.messages')
+const errorCodes = require('../constant/errorCodes.enum');
+const errorMessages = require('../constant/error.messages');
 
-const readFilePromise = promisify(fs.readFile)
-const pathFile = path.join(process.cwd(), 'database', 'users.json')
+const readFilePromise = promisify(fs.readFile);
+const pathFile = path.join(process.cwd(), 'database', 'users.json');
 
-let users = []
+let users = [];
 
 const readFile = async () => {
     try {
-        const promise = await readFilePromise(pathFile)
-        users = JSON.parse(promise.toString())
+        const promise = await readFilePromise(pathFile);
+        users = JSON.parse(promise.toString());
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
 }
 readFile();
