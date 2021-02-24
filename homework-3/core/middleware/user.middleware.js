@@ -63,15 +63,15 @@ module.exports = {
 
 
             if (!username || !password) {
-                throw new Error(errorMessages.EMPTY[preferL]);
+                throw new Error(errorMessages.EMPTY[preferL ? preferL : "default"]);
             }
 
             if (password.length < 8) {
-                throw new Error(`${errorMessages.TOO_WEAK[preferL]}${password.length}`);
+                throw new Error(`${errorMessages.TOO_WEAK[preferL ? preferL : "default"]}${password.length}`);
             }
             next();
         } catch (e) {
             res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
-    }
+    },
 }

@@ -2,6 +2,7 @@ const fs = require('fs');
 const {promisify} = require('util');
 const path = require('path');
 
+const errorMessage = require('../constant/error.messages')
 
 const readFilePromise = promisify(fs.readFile)
 const writeFilePromise = promisify(fs.writeFile)
@@ -20,11 +21,23 @@ const readFile = async () => {
 readFile();
 
 module.exports = {
-    findUsers: () => {
-        return users;
+    findUsers: (query, preferL) => {
+        const {username} = query;
+        if (!username) {
+            return users;
+        }
+        const user = users.filter((value,) => (value.username === query.username));
+        if (!user) {
+            throw new Error(errorMessage.NOT_FOUND[preferL ? preferL : "default"])
+        }
+        return user;
     },
-    findUserById: (userId) => {
-        return users[userId]
+    findUserById: (userId, preferL) => {
+        const user = users[userId]
+        if (!user){
+            throw new Error(errorMessage.NOT_FOUND[preferL ? preferL : "default"]);
+        }
+        return user
     },
 
     createUser: async (newUser) => {

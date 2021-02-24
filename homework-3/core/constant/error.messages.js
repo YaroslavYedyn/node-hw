@@ -18,5 +18,10 @@ module.exports = {
         en: 'Some filed is empty',
         ua: 'Заповни всі поля',
         default: 'Some filed is empty',
+    },
+    NOT_FOUND: {
+        en: 'user not found',
+        ua: 'користувача не знайдено',
+        default: 'user not found'
     }
 }

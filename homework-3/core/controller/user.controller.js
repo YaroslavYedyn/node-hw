@@ -4,7 +4,9 @@ const statusCode = require('../constant/errorCodes.enum')
 module.exports = {
     getAllUsers: (req, res) => {
         try {
-            const users = userService.findUsers();
+            const {preferL} = req.body;
+            console.log(preferL);
+            const users = userService.findUsers(req.query);
             res.json(users);
         } catch (e) {
             res.status(418).json(e.message)
@@ -13,8 +15,9 @@ module.exports = {
 
     getSingleUser: (req, res) => {
         try {
+            const {preferL} = req.body;
             const {userId} = req.params;
-            const user = userService.findUserById(userId);
+            const user = userService.findUserById(userId,preferL);
             res.json(user);
         } catch (e) {
             res.status(statusCode.BAD_REQUEST).json(e.message);
