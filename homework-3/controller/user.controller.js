@@ -18,6 +18,10 @@ module.exports = {
         res.status(201).json('users is created').end()
 
     },
+    updateUser: (req, res) => {
+        const users = userService.updateUser(req.params.id, req.body)
+        res.json(users)
+    },
 
     removeUser: (req, res) => {
         const {userId} = req.params
