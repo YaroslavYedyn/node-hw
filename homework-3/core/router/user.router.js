@@ -9,5 +9,4 @@ router.post('/', userMiddleware.isUserValid, userController.createUser);
 router.delete('/:userId', userController.removeUser);
 router.patch('/:id', userMiddleware.newDataValid, userController.updateUser);
 
-
 module.exports = router;

@@ -17,7 +17,7 @@ const readFile = async () => {
     } catch (e) {
         console.log(e);
     }
-}
+};
 readFile();
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
             const userId = +req.params.userId;
 
             if (userId < 0 || !Number.isInteger(userId) || Number.isNaN(userId)) {
-                throw new Error(`${errorMessages.NOT_VALID["default"]} UserID = ${userId}`);
+                throw new Error(`${errorMessages.NOT_VALID.default} UserID = ${userId}`);
             }
 
             next();
@@ -36,8 +36,9 @@ module.exports = {
     },
     isUserValid: (req, res, next) => {
         try {
-            const {username, password, email, preferL} = req.body;
-
+            const {
+                username, password, email, preferL
+            } = req.body;
 
             if (!username || !password) {
                 throw new Error(errorMessages.EMPTY[preferL]);
@@ -46,11 +47,11 @@ module.exports = {
             if (password.length < 8) {
                 throw new Error(`${errorMessages.TOO_WEAK[preferL]}${password.length}`);
             }
-            users.some(value => {
+            users.some((value) => {
                 if (value.email === email) {
                     throw new Error(errorMessages.NOT_EXISTS[preferL]);
                 }
-            })
+            });
 
             next();
         } catch (e) {
@@ -59,19 +60,20 @@ module.exports = {
     },
     newDataValid: (req, res, next) => {
         try {
-            const {username, password, email, preferL} = req.body;
-
+            const {
+                username, password, preferL
+            } = req.body;
 
             if (!username || !password) {
-                throw new Error(errorMessages.EMPTY[preferL ? preferL : "default"]);
+                throw new Error(errorMessages.EMPTY[preferL || 'default']);
             }
 
             if (password.length < 8) {
-                throw new Error(`${errorMessages.TOO_WEAK[preferL ? preferL : "default"]}${password.length}`);
+                throw new Error(`${errorMessages.TOO_WEAK[preferL || 'default']}${password.length}`);
             }
             next();
         } catch (e) {
             res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
     },
-}
+};

@@ -1,15 +1,14 @@
 const userService = require('../service/user.service');
-const statusCode = require('../constant/errorCodes.enum')
+const statusCode = require('../constant/errorCodes.enum');
 
 module.exports = {
     getAllUsers: (req, res) => {
         try {
-            const {preferL} = req.body;
-            console.log(preferL);
-            const users = userService.findUsers(req.query);
+            const { preferL } = req.body;
+            const users = userService.findUsers(req.query, preferL);
             res.json(users);
         } catch (e) {
-            res.status(418).json(e.message)
+            res.status(418).json(e.message);
         }
     },
 
@@ -17,7 +16,7 @@ module.exports = {
         try {
             const {preferL} = req.body;
             const {userId} = req.params;
-            const user = userService.findUserById(userId,preferL);
+            const user = userService.findUserById(userId, preferL);
             res.json(user);
         } catch (e) {
             res.status(statusCode.BAD_REQUEST).json(e.message);
@@ -28,7 +27,7 @@ module.exports = {
         try {
             const newUser = req.body;
             const user = userService.createUser(newUser);
-            res.status(201).json('users is created').end();
+            res.status(201).json(user).end();
         } catch (e) {
             res.status(statusCode.BAD_REQUEST).json(e.message);
         }
@@ -45,11 +44,11 @@ module.exports = {
 
     removeUser: (req, res) => {
         try {
-            const {userId} = req.params;
+            const { userId } = req.params;
             userService.removeUser(userId);
             res.status(201).json('users is remove');
         } catch (e) {
             res.status(statusCode.BAD_REQUEST).json(e.message);
         }
     }
-}
+};

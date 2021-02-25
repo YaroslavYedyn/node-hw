@@ -24,4 +24,4 @@ module.exports = {
         ua: 'користувача не знайдено',
         default: 'user not found'
     }
-}
+};
