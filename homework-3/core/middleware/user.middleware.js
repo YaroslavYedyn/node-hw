@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {promisify} = require('util');
+const { promisify } = require('util');
 const path = require('path');
 
 const errorCodes = require('../constant/errorCodes.enum');

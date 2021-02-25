@@ -42,21 +42,21 @@ module.exports = {
 
     createUser: async (newUser) => {
         users.push(newUser);
-        return await writeFilePromise(pathFile, JSON.stringify(users));
+        return writeFilePromise(pathFile, JSON.stringify(users));
     },
 
-    updateUser: (userId, newData) => {
+    updateUser: async (userId, newData) => {
         users.forEach((value, index) => {
             if (index === +userId) {
                 users[index] = newData;
             }
         });
-        writeFilePromise(pathFile, JSON.stringify(users));
+        await writeFilePromise(pathFile, JSON.stringify(users));
         return users;
     },
 
-    removeUser: (userId) => {
+    removeUser: async (userId) => {
         const filterUsers = users.filter(((value, index) => index !== +userId));
-        writeFilePromise(pathFile, JSON.stringify(filterUsers));
+        await writeFilePromise(pathFile, JSON.stringify(filterUsers));
     }
 };

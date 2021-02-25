@@ -14,8 +14,8 @@ module.exports = {
 
     getSingleUser: (req, res) => {
         try {
-            const {preferL} = req.body;
-            const {userId} = req.params;
+            const { preferL } = req.body;
+            const { userId } = req.params;
             const user = userService.findUserById(userId, preferL);
             res.json(user);
         } catch (e) {
