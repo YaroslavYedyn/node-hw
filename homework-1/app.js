@@ -1,6 +1,7 @@
-const path = require('path')
-const fs = require('fs')
-const dirPath = path.join(__dirname, 'time')
+const path = require('path');
+const fs = require('fs');
+
+const dirPath = path.join(__dirname, 'time');
 console.log(dirPath);
 
 function readDir(pathName) {
@@ -9,8 +10,8 @@ function readDir(pathName) {
             console.log(err);
             return;
         }
-        files.forEach(fileName => {
-            const pathFile = path.join(pathName, fileName)
+        files.forEach((fileName) => {
+            const pathFile = path.join(pathName, fileName);
 
             fs.stat(pathFile, (err1, stats) => {
                 if (err1) {
@@ -19,19 +20,16 @@ function readDir(pathName) {
                 }
                 if (stats.isDirectory()) {
                     return readDir(pathFile);
-                } else {
-                    const newPath = path.join(__dirname, 'time',fileName)
-                    fs.rename(pathFile, newPath, err2 => {
-                        if (err2) {
-                            console.log(err2);
-                            return;
-                        }
-                    })
                 }
-
-            })
-        })
-    })
+                const newPath = path.join(__dirname, 'time', fileName);
+                fs.rename(pathFile, newPath, (err2) => {
+                    if (err2) {
+                        console.log(err2);
+                    }
+                });
+            });
+        });
+    });
 }
 
-readDir(dirPath)
+readDir(dirPath);
