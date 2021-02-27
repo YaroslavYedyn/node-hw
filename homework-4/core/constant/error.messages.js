@@ -24,6 +24,11 @@ module.exports = {
         ua: 'Ім`я веденний некорректно',
         default: 'Name is incorrect',
     },
+    NOT_VALID_LASTNAME: {
+        en: 'Lastname is incorrect',
+        ua: 'Прізвище веденний некорректно',
+        default: 'Lastname is incorrect',
+    },
     NOT_FOUND: {
         en: 'user not found',
         ua: 'користувача не знайдено',

@@ -38,6 +38,15 @@ module.exports = {
         }
     },
 
+    updateUsers: async (req, res) => {
+        try {
+            await userService.updateUsers(req.query, req.body);
+            res.json('Users Update');
+        } catch (e) {
+            res.status(400).json(e.message);
+        }
+    },
+
     removeUser: async (req, res) => {
         try {
             const id = req.params.userId;
