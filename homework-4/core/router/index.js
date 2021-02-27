@@ -1,3 +1,3 @@
 module.exports = {
-    apiRouter: require('./api.router')
+    apiRouter: require('./api.router'),
 };

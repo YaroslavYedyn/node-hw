@@ -24,6 +24,11 @@ module.exports = {
         ua: 'Ім`я веденний некорректно',
         default: 'Name is incorrect',
     },
+    NOT_VALID_BRAND: {
+        en: 'Brand is incorrect',
+        ua: 'Бренда веденний некорректно',
+        default: 'Brand is incorrect',
+    },
     NOT_VALID_LASTNAME: {
         en: 'Lastname is incorrect',
         ua: 'Прізвище веденний некорректно',
@@ -33,5 +38,15 @@ module.exports = {
         en: 'user not found',
         ua: 'користувача не знайдено',
         default: 'user not found'
+    },
+    EMPTY: {
+        en: 'Empty field',
+        ua: 'Поле порожнє',
+        default: 'Empty field'
+    },
+    NOT_VALID_PRICE: {
+        en: 'The price entered is incorrect',
+        ua: 'Введена ціна невірна',
+        default: 'The price entered is incorrect'
     }
 };
