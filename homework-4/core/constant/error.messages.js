@@ -34,10 +34,15 @@ module.exports = {
         ua: 'Прізвище веденний некорректно',
         default: 'Lastname is incorrect',
     },
-    NOT_FOUND: {
+    NOT_FOUND_USER: {
         en: 'user not found',
         ua: 'користувача не знайдено',
         default: 'user not found'
+    },
+    NOT_FOUND_CAR: {
+        en: 'car not found',
+        ua: 'автомобіль не знайдено',
+        default: 'car not found'
     },
     EMPTY: {
         en: 'Empty field',
