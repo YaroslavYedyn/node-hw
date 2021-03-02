@@ -24,12 +24,7 @@ module.exports = {
         ua: 'Ім`я веденний некорректно',
         default: 'Name is incorrect',
     },
-    NOT_VALID_BRAND: {
-        en: 'Brand is incorrect',
-        ua: 'Бренда веденний некорректно',
-        default: 'Brand is incorrect',
-    },
-    NOT_VALID_LASTNAME: {
+    NOT_VALID_SURNAME: {
         en: 'Lastname is incorrect',
         ua: 'Прізвище веденний некорректно',
         default: 'Lastname is incorrect',
@@ -39,20 +34,15 @@ module.exports = {
         ua: 'користувача не знайдено',
         default: 'user not found'
     },
-    NOT_FOUND_CAR: {
-        en: 'car not found',
-        ua: 'автомобіль не знайдено',
-        default: 'car not found'
+    NOT_FOUND_ADDRESS: {
+        en: 'Address not found',
+        ua: 'Адрес не знайдено',
+        default: 'Address not found'
     },
     EMPTY: {
         en: 'Empty field',
         ua: 'Поле порожнє',
         default: 'Empty field'
-    },
-    NOT_VALID_PRICE: {
-        en: 'The price entered is incorrect',
-        ua: 'Введена ціна невірна',
-        default: 'The price entered is incorrect'
     },
     WRONG_DOCUMENT_ERR: {
         en: 'Wrong email or password',
