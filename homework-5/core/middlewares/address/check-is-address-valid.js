@@ -4,6 +4,7 @@ const { errorCode } = require('../../constants');
 module.exports = async (req, res, next) => {
     try {
         const { error } = await addressValidator.createAddressValidator.validate(req.body);
+
         if (error) {
             throw new Error(error.details[0].message);
         }

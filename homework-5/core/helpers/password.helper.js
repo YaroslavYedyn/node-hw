@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+
 const { errorMessage } = require('../constants');
 
 module.exports = {

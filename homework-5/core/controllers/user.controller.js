@@ -1,5 +1,6 @@
-const { userService } = require('../services');
+const { errorCode, successMessage } = require('../constants');
 const { passwordHelper } = require('../helpers');
+const { userService } = require('../services');
 
 module.exports = {
     findUser: async (req, res) => {
@@ -7,7 +8,7 @@ module.exports = {
             const users = await userService.findUser(req.query);
             res.json(users);
         } catch (e) {
-            res.status(418).json(e.message);
+            res.status(errorCode.BAD_REQUEST).json(e.message);
         }
     },
     getSingleUser: async (req, res) => {
@@ -15,33 +16,34 @@ module.exports = {
             const user = await userService.getSingleUser(req.params.id);
             res.json(user);
         } catch (e) {
-            res.status(418).json(e.message);
+            res.status(errorCode.BAD_REQUEST).json(e.message);
         }
     },
     createUser: async (req, res) => {
         try {
-            const { password } = req.body;
+            const { password, preferL = 'en' } = req.body;
             const hashPassword = await passwordHelper.hash(password);
             await userService.createUser({ ...req.body, password: hashPassword });
-            res.json('User created');
+            res.json(successMessage.CREATE_USER[preferL]);
         } catch (e) {
-            res.status(401).json(e.message);
+            res.status(errorCode.TEAPOT).json(e.message);
         }
     },
     updateUser: async (req, res) => {
         try {
+            const { preferL = 'en' } = req.body;
             await userService.updateUser(req.query, req.body);
-            res.json('User Updated');
+            res.json(successMessage.UPDATE_USER[preferL]);
         } catch (e) {
-            res.status(401).json(e.message);
+            res.status(errorCode.TEAPOT).json(e.message);
         }
     },
     removeUser: async (req, res) => {
         try {
             await userService.removeUser(req.params.id);
-            res.json('User remove');
+            res.json(successMessage.REMOVE_USER.default);
         } catch (e) {
-            res.status(401).json(e.message);
+            res.status(errorCode.TEAPOT).json(e.message);
         }
     },
 };
