@@ -1,6 +1,6 @@
 const { addressValidator } = require('../../validators');
 const { addressService } = require('../../services');
-const { errorCode, errorMessage } = require('../../constants');
+const { errorCode, errorMessage } = require('../../Error');
 
 module.exports = async (req, res, next) => {
     try {

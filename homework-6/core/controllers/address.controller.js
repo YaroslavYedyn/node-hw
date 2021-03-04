@@ -1,5 +1,5 @@
 const { addressService } = require('../services');
-const { errorCode, successMessage } = require('../constants');
+const { errorCode, successMessage } = require('../Error');
 
 module.exports = {
     findAddress: async (req, res) => {

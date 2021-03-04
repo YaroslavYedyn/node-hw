@@ -1,4 +1,4 @@
-const { errorCode, errorMessage } = require('../../constants');
+const { errorCode, errorMessage } = require('../../Error');
 const { userValidator } = require('../../validators');
 const { userService } = require('../../services');
 

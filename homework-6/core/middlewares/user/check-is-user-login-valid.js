@@ -1,5 +1,5 @@
 const { userValidator } = require('../../validators');
-const { errorCode } = require('../../constants');
+const { errorCode } = require('../../Error');
 
 module.exports = async (req, res, next) => {
     try {

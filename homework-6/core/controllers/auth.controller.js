@@ -1,7 +1,6 @@
 const { authService, userService } = require('../services');
-const { errorCode } = require('../constants');
-const { tokenizer } = require('../helpers');
-const { passwordHelper } = require('../helpers');
+const { errorCode } = require('../Error');
+const { tokenizer, passwordHelper } = require('../helpers');
 
 module.exports = {
     loginUser: async (req, res) => {
@@ -12,7 +11,6 @@ module.exports = {
             await passwordHelper.compare(password, user.password);
 
             const tokens = tokenizer();
-
             await authService.createTokens(tokens, user);
 
             res.json(tokens);
@@ -20,4 +18,29 @@ module.exports = {
             res.status(errorCode.BAD_REQUEST).json(e.message);
         }
     },
+    logoutUser: async (req, res) => {
+        try {
+            const token = req.get('Authorization');
+
+            await authService.deleteTokensByParams({ access_token: token });
+
+            res.json(204);
+        } catch (e) {
+            res.status(errorCode.BAD_REQUEST).json(e.message);
+        }
+    },
+    refreshToken: async (req, res) => {
+        try {
+            const refresh_token = req.get('Authorization');
+
+            await authService.deleteTokensByParams({ refresh_token });
+
+            const tokens = tokenizer();
+            await authService.createTokens(tokens, req.user_id);
+
+            res.json(tokens);
+        } catch (e) {
+            res.status(errorCode.BAD_REQUEST).json(e.message);
+        }
+    }
 };

@@ -1,10 +1,10 @@
-const { errorCode } = require('../../constants');
+const { errorCode, errorMessage } = require('../../Error');
 const { userValidator } = require('../../validators');
 const { userService } = require('../../services');
 
 module.exports = async (req, res, next) => {
     try {
-        const { email } = req.body;
+        const { email, prefL = 'en' } = req.body;
         const { error } = await userValidator.createUserValidator.validate(req.body);
 
         if (error) {
@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
         }
         const unique = await userService.getSingleUser({ email });
         if (unique) {
-            throw new Error('such user is registered');
+            throw new Error(errorMessage.NOT_EXISTS[prefL]);
         }
         next();
     } catch (e) {

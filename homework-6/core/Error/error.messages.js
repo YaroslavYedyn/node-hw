@@ -48,5 +48,16 @@ module.exports = {
         en: 'Wrong email or password',
         ua: 'Неправильна електронна адреса або пароль',
         default: 'Wrong email or password',
+    },
+    TOKEN_IS_REQUIRED: {
+        en: 'Tokes is required',
+        ua: 'Токен не переданий',
+        default: 'Tokes is required',
+
+    },
+    TOKEN_NOT_VALID: {
+        en: 'Token not valid',
+        ua: 'Токен не вірний!',
+        default: 'Token not valid',
     }
 };

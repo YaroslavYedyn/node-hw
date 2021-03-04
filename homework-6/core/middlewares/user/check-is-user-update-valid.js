@@ -1,4 +1,4 @@
-const { errorCode } = require('../../constants');
+const { errorCode } = require('../../Error');
 const { userValidator } = require('../../validators');
 
 module.exports = async (req, res, next) => {
