@@ -1,6 +1,6 @@
 const { errorCode, successMessage } = require('../Error');
 const { passwordHelper } = require('../helpers');
-const { userService } = require('../services');
+const { userService, authService } = require('../services');
 
 module.exports = {
     findUser: async (req, res) => {
@@ -41,6 +41,7 @@ module.exports = {
     removeUser: async (req, res) => {
         try {
             await userService.removeUser(req.params.id);
+            await authService.deleteTokensByParams({ user_id: req.params.id });
             res.json(successMessage.REMOVE_USER.default);
         } catch (e) {
             res.status(errorCode.TEAPOT).json(e.message);
