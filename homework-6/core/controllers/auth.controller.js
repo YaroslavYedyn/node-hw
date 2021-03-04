@@ -7,6 +7,7 @@ module.exports = {
         try {
             const { email, password } = req.body;
             const user = await userService.getSingleUser({ email });
+            await authService.deleteTokensByParams({ user_id: user._id });
 
             await passwordHelper.compare(password, user.password);
 
