@@ -1,4 +1,4 @@
-const { errorCode } = require('../../Error');
+const { errorCode, errorMessage, ErrorHandler } = require('../../Error');
 const { userValidator } = require('../../validators');
 
 module.exports = async (req, res, next) => {
@@ -6,10 +6,10 @@ module.exports = async (req, res, next) => {
         const { error } = await userValidator.updateUserValidator.validate(req.body);
 
         if (error) {
-            throw new Error(error.details[0].message);
+            throw new ErrorHandler(errorCode.BAD_REQUEST, errorMessage.BODY_NOT_VALID, error.details[0].message);
         }
         next();
     } catch (e) {
-        res.status(errorCode.BAD_REQUEST).json(e.message);
+        next(e);
     }
 };

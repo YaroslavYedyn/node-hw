@@ -1,9 +1,8 @@
 const { authService, userService } = require('../services');
-const { errorCode } = require('../Error');
 const { tokenizer, passwordHelper } = require('../helpers');
 
 module.exports = {
-    loginUser: async (req, res) => {
+    loginUser: async (req, res, next) => {
         try {
             const { email, password } = req.body;
             const user = await userService.getSingleUser({ email });
@@ -16,10 +15,10 @@ module.exports = {
 
             res.json(tokens);
         } catch (e) {
-            res.status(errorCode.BAD_REQUEST).json(e.message);
+            next(e);
         }
     },
-    logoutUser: async (req, res) => {
+    logoutUser: async (req, res, next) => {
         try {
             const token = req.get('Authorization');
 
@@ -27,10 +26,10 @@ module.exports = {
 
             res.json(204);
         } catch (e) {
-            res.status(errorCode.BAD_REQUEST).json(e.message);
+            next(e);
         }
     },
-    refreshToken: async (req, res) => {
+    refreshToken: async (req, res, next) => {
         try {
             const refresh_token = req.get('Authorization');
 
@@ -41,7 +40,7 @@ module.exports = {
 
             res.json(tokens);
         } catch (e) {
-            res.status(errorCode.BAD_REQUEST).json(e.message);
+            next(e);
         }
     }
 };

@@ -1,63 +1,42 @@
 module.exports = {
-    NOT_VALID_ID: {
-        en: 'Not Valid user id',
-        ua: 'User id не є правельним',
-        default: 'Not Valid user id',
-    },
-    NOT_VALID_AGE: {
-        en: 'Age is incorrect',
-        ua: 'Вік веденний некорректно',
-        default: 'Age is incorrect',
-    },
-    TOO_WEAK: {
-        en: 'Too weak password',
-        ua: 'Пароль закороткий!',
-        default: 'Too weak password',
-    },
-    NOT_EXISTS: {
-        en: 'Such a user already exists',
-        ua: 'Такий користувач вже існує',
-        default: 'Such a user already exists',
-    },
-    NOT_VALID_NAME: {
-        en: 'Name is incorrect',
-        ua: 'Ім`я веденний некорректно',
-        default: 'Name is incorrect',
-    },
-    NOT_VALID_SURNAME: {
-        en: 'Lastname is incorrect',
-        ua: 'Прізвище веденний некорректно',
-        default: 'Lastname is incorrect',
-    },
-    NOT_FOUND_USER: {
-        en: 'user not found',
-        ua: 'користувача не знайдено',
-        default: 'user not found'
-    },
-    NOT_FOUND_ADDRESS: {
-        en: 'Address not found',
-        ua: 'Адрес не знайдено',
-        default: 'Address not found'
-    },
-    EMPTY: {
-        en: 'Empty field',
-        ua: 'Поле порожнє',
-        default: 'Empty field'
-    },
-    WRONG_DOCUMENT_ERR: {
-        en: 'Wrong email or password',
-        ua: 'Неправильна електронна адреса або пароль',
-        default: 'Wrong email or password',
-    },
-    TOKEN_IS_REQUIRED: {
-        en: 'Tokes is required',
-        ua: 'Токен не переданий',
-        default: 'Tokes is required',
+    // BAD REQUEST
 
+    BAD_REQUEST: {
+        customCode: 4000
     },
-    TOKEN_NOT_VALID: {
-        en: 'Token not valid',
-        ua: 'Токен не вірний!',
-        default: 'Token not valid',
-    }
+
+    TOO_WEAK_PASSWORD: {
+        customCode: 4001
+    },
+
+    ID_NOT_VALID: {
+        customCode: 4002
+    },
+    BODY_NOT_VALID: {
+        customCode: 4005
+    },
+
+    WRONG_EMAIL_OF_PASSWORD: {
+        customCode: 4003
+    },
+
+    NO_TOKEN: {
+        customCode: 4004
+    },
+
+    // UNAUTHORIZED
+    WRONG_TOKEN: {
+        customCode: 4011
+    },
+
+    // NOT FOUND
+    RECORD_NOT_FOUND: {
+        customCode: 4041
+    },
+    USER_NOT_FOUND: {
+        customCode: 4042
+    },
+    ADDRESS_NOT_FOUND: {
+        customCode: 4043
+    },
 };

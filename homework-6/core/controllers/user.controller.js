@@ -1,50 +1,55 @@
-const { errorCode, successMessage } = require('../Error');
+const { successMessage } = require('../Error');
 const { passwordHelper } = require('../helpers');
 const { userService, authService } = require('../services');
 
 module.exports = {
-    findUser: async (req, res) => {
+    findUser: async (req, res, next) => {
         try {
             const users = await userService.findUser(req.query);
+
             res.json(users);
         } catch (e) {
-            res.status(errorCode.BAD_REQUEST).json(e.message);
+            next(e);
         }
     },
-    getSingleUser: async (req, res) => {
+    getSingleUser: async (req, res, next) => {
         try {
             const user = await userService.getSingleUser({ _id: req.params.id });
+
             res.json(user);
         } catch (e) {
-            res.status(errorCode.BAD_REQUEST).json(e.message);
+            next(e);
         }
     },
-    createUser: async (req, res) => {
+    createUser: async (req, res, next) => {
         try {
-            const { password, preferL = 'en' } = req.body;
+            const { password } = req.body;
             const hashPassword = await passwordHelper.hash(password);
+
             await userService.createUser({ ...req.body, password: hashPassword });
-            res.json(successMessage.CREATE_USER[preferL]);
+
+            res.json(successMessage.CREATE);
         } catch (e) {
-            res.status(errorCode.TEAPOT).json(e.message);
+            next(e);
         }
     },
-    updateUser: async (req, res) => {
+    updateUser: async (req, res, next) => {
         try {
-            const { preferL = 'en' } = req.body;
             await userService.updateUser(req.query, req.body);
-            res.json(successMessage.UPDATE_USER[preferL]);
+
+            res.json(successMessage.UPDATE);
         } catch (e) {
-            res.status(errorCode.TEAPOT).json(e.message);
+            next(e);
         }
     },
-    removeUser: async (req, res) => {
+    removeUser: async (req, res, next) => {
         try {
             await userService.removeUser(req.params.id);
             await authService.deleteTokensByParams({ user_id: req.params.id });
-            res.json(successMessage.REMOVE_USER.default);
+
+            res.json(successMessage.REMOVE);
         } catch (e) {
-            res.status(errorCode.TEAPOT).json(e.message);
+            next(e);
         }
     },
 };

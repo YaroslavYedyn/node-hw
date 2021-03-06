@@ -1,21 +1,20 @@
-const { errorCode, errorMessage } = require('../../Error');
+const { errorCode, errorMessage, ErrorHandler } = require('../../Error');
 const { userValidator } = require('../../validators');
 const { userService } = require('../../services');
 
 module.exports = async (req, res, next) => {
     try {
-        const { preferL = 'en' } = req.body;
         const { error } = await userValidator.idUserValidator.validate(req.params.id);
         const user = await userService.getSingleUser({ _id: req.params.id });
 
         if (!user) {
-            throw new Error(errorMessage.NOT_FOUND_USER[preferL]);
+            throw new ErrorHandler(errorCode.BAD_REQUEST, errorMessage.USER_NOT_FOUND);
         }
         if (error) {
-            throw new Error(error.details[0].message);
+            throw new ErrorHandler(errorCode.BAD_REQUEST, errorMessage.ID_NOT_VALID, error.details[0].message);
         }
         next();
     } catch (e) {
-        res.status(errorCode.BAD_REQUEST).json(e.message);
+        next(e);
     }
 };

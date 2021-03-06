@@ -1,37 +1,14 @@
 module.exports = {
-    CREATE_USER: {
-        ua: 'Користувач створенний',
-        en: 'User Created!',
-        default: 'User Created!',
+    CREATE: {
+        customCode: 2011
     },
-    UPDATE_USER: {
-        ua: 'Користувач оновлений!',
-        en: 'User Updated!',
-        default: 'User Updated!',
+    UPDATE: {
+        customCode: 2012
     },
-    LOGIN_USER: {
-        ua: 'Користувач ввійшов успішно!',
-        en: 'User logged in',
-        default: 'User logged in',
+    LOGIN: {
+        customCode: 2001
     },
-    REMOVE_USER: {
-        ua: 'Користувача видалено!',
-        en: 'User Remove!',
-        default: 'User Remove!',
+    REMOVE: {
+        customCode: 2002
     },
-    CREATE_ADDRESS: {
-        ua: 'Адрес створенний',
-        en: 'Address Created!',
-        default: 'Addres Created!',
-    },
-    UPDATE_ADDRESS: {
-        ua: 'Адрес оновлений!',
-        en: 'Address Updated!',
-        default: 'Address Updated!',
-    },
-    REMOVE_ADDRESS: {
-        ua: 'Адрес видалено!',
-        en: 'Address Remove!',
-        default: 'Address Remove!',
-    }
 };
