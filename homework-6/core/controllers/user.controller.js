@@ -42,6 +42,14 @@ module.exports = {
             next(e);
         }
     },
+    forgotPassword: (req, res, next) => {
+        try {
+            console.log(req.user);
+            res.json(successMessage.UPDATE);
+        } catch (e) {
+            next(e);
+        }
+    },
     removeUser: async (req, res, next) => {
         try {
             await userService.removeUser(req.params.id);

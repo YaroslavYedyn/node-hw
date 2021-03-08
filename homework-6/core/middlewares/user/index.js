@@ -1,6 +1,7 @@
 module.exports = {
-    checkIsUserValid: require('./check-is-user-valid'),
+    checkIsForgotPasswordValid: require('./check-is-forgot-password-valid'),
+    checkIsIdValid: require('./check-is-id-valid'),
     checkIsUserLoginValid: require('./check-is-user-login-valid'),
     checkIsUserUpdateValid: require('./check-is-user-update-valid'),
-    checkIsIdValid: require('./check-is-id-valid'),
+    checkIsUserValid: require('./check-is-user-valid'),
 };

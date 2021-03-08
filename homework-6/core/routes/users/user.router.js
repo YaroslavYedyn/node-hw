@@ -8,5 +8,6 @@ router.post('/', userMiddleware.checkIsUserValid, userController.createUser);
 router.patch('/', authMiddleware.checkAccessToken, userMiddleware.checkIsUserUpdateValid, userController.updateUser);
 router.get('/:id', userMiddleware.checkIsIdValid, userController.getSingleUser);
 router.delete('/:id', authMiddleware.checkAccessToken, userMiddleware.checkIsIdValid, userController.removeUser);
+router.patch('/forgot', userMiddleware.checkIsForgotPasswordValid, userController.forgotPassword);
 
 module.exports = router;

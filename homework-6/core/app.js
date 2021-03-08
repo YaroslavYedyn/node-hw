@@ -2,8 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 
-const { apiRouter } = require('./routes');
-const notFound = require('./routes/not-found/not-found.router');
+const { apiRouter, notFound } = require('./routes');
 
 const { PORT, URL_MONGO_DATABASE } = require('./config/config');
 
