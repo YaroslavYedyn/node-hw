@@ -1,11 +1,13 @@
 const router = require('express').Router();
 
-const { authRouter } = require('../auth');
 const { addressRoute } = require('../address');
+const { authRouter } = require('../auth');
+const { emailRouter } = require('../email');
 const { userRouter } = require('../users');
 
-router.use('/auth', authRouter);
 router.use('/address', addressRoute);
+router.use('/auth', authRouter);
+router.use('/email', emailRouter);
 router.use('/users', userRouter);
 
 module.exports = router;

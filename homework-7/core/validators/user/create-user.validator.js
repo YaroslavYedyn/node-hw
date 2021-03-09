@@ -8,6 +8,8 @@ module.exports = Joi.object({
         .trim()
         .min(2)
         .max(50),
+    activate: Joi.boolean()
+        .required(),
     age: Joi.number()
         .integer()
         .min(0)

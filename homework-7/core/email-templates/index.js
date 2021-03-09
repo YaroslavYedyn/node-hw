@@ -1,8 +1,8 @@
 const { emailActions } = require('../constants');
 
 module.exports = {
-    [emailActions.WELCOME]: {
-        templateName: 'welcome',
+    [emailActions.ACTIVATE]: {
+        templateName: 'activate',
         subject: 'Welcome to our website'
     },
     [emailActions.DELETE]: {

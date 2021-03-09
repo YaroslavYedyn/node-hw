@@ -1,6 +1,6 @@
 const { emailActions } = require('../constants');
 const { successMessage } = require('../Error');
-const { passwordHelper } = require('../helpers');
+const { passwordHelper, tokenizer } = require('../helpers');
 const { userService, authService, emailService } = require('../services');
 
 module.exports = {
@@ -27,11 +27,17 @@ module.exports = {
             const { password, email } = req.body;
             const hashPassword = await passwordHelper.hash(password);
 
-            await userService.createUser({ ...req.body, password: hashPassword });
+            const user = await userService.createUser({ ...req.body, password: hashPassword, activate: false });
 
-            await emailService.sendMail(email, emailActions.WELCOME, { name: req.body.name });
+            const tokens = tokenizer();
+            await authService.createTokens(tokens, user._id);
 
-            res.json(successMessage.CREATE);
+            await emailService.sendMail(email, emailActions.ACTIVATE, {
+                name: req.body.name,
+                token: tokens.access_token,
+            });
+
+            res.status(200).json('Please check email');
         } catch (e) {
             next(e);
         }

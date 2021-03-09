@@ -5,7 +5,7 @@ const { userService } = require('../../services');
 module.exports = async (req, res, next) => {
     try {
         const { email } = req.body;
-        const { error } = await userValidator.createUserValidator.validate(req.body);
+        const { error } = await userValidator.createUserValidator.validate({ ...req.body, activate: false });
 
         if (error) {
             throw new ErrorHandler(errorCode.BAD_REQUEST, BODY_NOT_VALID.customCode, error.details[0].message);

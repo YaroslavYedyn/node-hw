@@ -1,4 +1,4 @@
 module.exports = {
-    WELCOME: 'WELCOME',
+    ACTIVATE: 'ACTIVATE',
     DELETE: 'DELETE'
 };

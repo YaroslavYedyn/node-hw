@@ -3,6 +3,7 @@ const { Schema, model } = require('mongoose');
 const { constants: { ADDRESS, USER } } = require('../../constants');
 
 const userScheme = new Schema({
+    activate: { type: Boolean },
     name: { type: String },
     age: { type: Number },
     email: { type: String, required: true },
