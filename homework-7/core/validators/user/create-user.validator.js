@@ -8,8 +8,6 @@ module.exports = Joi.object({
         .trim()
         .min(2)
         .max(50),
-    activate: Joi.boolean()
-        .required(),
     age: Joi.number()
         .integer()
         .min(0)
@@ -21,4 +19,7 @@ module.exports = Joi.object({
         .regex(regexp.PASSWORD_REGEXP)
         .trim()
         .required(),
+    activate_token: Joi.string(),
+    activate_status: Joi.boolean()
+        .required()
 });

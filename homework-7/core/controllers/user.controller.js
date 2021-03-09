@@ -1,6 +1,6 @@
 const { emailActions } = require('../constants');
 const { successMessage } = require('../Error');
-const { passwordHelper, tokenizer } = require('../helpers');
+const { passwordHelper } = require('../helpers');
 const { userService, authService, emailService } = require('../services');
 
 module.exports = {
@@ -24,17 +24,14 @@ module.exports = {
     },
     createUser: async (req, res, next) => {
         try {
-            const { password, email } = req.body;
+            const { password, email } = req.user;
             const hashPassword = await passwordHelper.hash(password);
 
-            const user = await userService.createUser({ ...req.body, password: hashPassword, activate: false });
-
-            const tokens = tokenizer();
-            await authService.createTokens(tokens, user._id);
+            const user = await userService.createUser({ ...req.user, password: hashPassword });
 
             await emailService.sendMail(email, emailActions.ACTIVATE, {
                 name: req.body.name,
-                token: tokens.access_token,
+                token: user.activate_token
             });
 
             res.status(200).json('Please check email');
@@ -65,6 +62,7 @@ module.exports = {
     },
     removeUser: async (req, res, next) => {
         try {
+            console.log('remove');
             const { email, name } = req.user;
             await userService.removeUser(req.params.id);
             await authService.deleteTokensByParams({ user_id: req.params.id });
