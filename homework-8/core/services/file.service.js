@@ -3,8 +3,8 @@ const uuid = require('uuid').v1;
 const fs = require('fs-extra').promises;
 
 module.exports = {
-    downloadFile: async (file, fileType, user) => {
-        const pathWithoutStatic = path.join('user', `${user._id}`, fileType);
+    downloadFile: async (file, fileType, item, pathFolderName) => {
+        const pathWithoutStatic = path.join(pathFolderName, `${item._id}`, fileType);
         const documentFolder = path.join(process.cwd(), 'homework-8', 'core', 'static', pathWithoutStatic);
 
         const fileExtension = file.name.split('.').pop();

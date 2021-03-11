@@ -40,7 +40,7 @@ module.exports = {
             });
 
             if (avatar) {
-                const uploadPath = await fileService.downloadFile(avatar, PHOTOS_FOLDER_NAME, newUser);
+                const uploadPath = await fileService.downloadFile(avatar, PHOTOS_FOLDER_NAME, newUser, 'user');
                 await userService.updateUser({ _id: newUser._id }, { avatar: uploadPath });
             }
             res.status(200).json('Please check email');

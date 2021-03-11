@@ -6,6 +6,8 @@ const addressScheme = new Schema({
     city: { type: String },
     street: { type: String },
     house: { type: Number },
+    photos: [{ type: String }],
+    docs: [{ type: String }],
 }, { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } });
 
 module.exports = model(ADDRESS, addressScheme);
