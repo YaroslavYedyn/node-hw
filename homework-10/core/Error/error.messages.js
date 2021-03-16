@@ -12,6 +12,9 @@ module.exports = {
     ID_NOT_VALID: {
         customCode: 4002
     },
+    USER_NOT_ACTIVATE: {
+        customCode: 4009
+    },
     BODY_NOT_VALID: {
         customCode: 4005
     },

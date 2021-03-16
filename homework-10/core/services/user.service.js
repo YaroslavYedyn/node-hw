@@ -4,13 +4,13 @@ const { queryBuilder: { baseQueryBuilder, userObjectFilter } } = require('../hel
 module.exports = {
     findUser: async (query) => {
         const {
-            keys, page, offset, sort, limit, filters
+            keys, page, offset, limit, filters
         } = baseQueryBuilder(query);
 
         const filterObject = userObjectFilter(filters, keys);
 
         const user = await UserModel.findAll({
-            where: filterObject, ...limit, ...offset, order: sort
+            where: filterObject, ...limit, ...offset,
         });
 
         const count = await UserModel.count(filterObject);
@@ -42,5 +42,5 @@ module.exports = {
             pages: Math.ceil(limit / count)
         };
     },
-    removeUser: (id) => UserModel.destroy({ where: id }),
+    removeUser: (id) => UserModel.destroy({ where: { id } }),
 };

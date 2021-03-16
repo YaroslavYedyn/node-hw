@@ -1,12 +1,10 @@
-const { authService, userService } = require('../services');
+const { authService } = require('../services');
 const { tokenizer, passwordHelper } = require('../helpers');
 
 module.exports = {
     loginUser: async (req, res, next) => {
         try {
-            const { email, password } = req.body;
-            const { dataValues } = await userService.getSingleUser({ email });
-            const user = dataValues;
+            const { user, body: { password } } = req;
 
             await authService.deleteTokensByParams({ user_id: user.id });
 
