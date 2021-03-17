@@ -1,0 +1,11 @@
+.content {
+    color: darkorchid;
+}
+
+.footer {
+    background: cadetblue;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}

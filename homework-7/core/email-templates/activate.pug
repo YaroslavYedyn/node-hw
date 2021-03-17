@@ -1,0 +1,7 @@
+extends template
+block content
+    div.content
+        | Hello #{name}  our dear friend,
+        | Please, activate your account.Visit on this link
+        - let url = 'http://localhost:5050/email/activate?token='
+        a(href=url + token) Please here

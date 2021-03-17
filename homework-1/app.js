@@ -1,49 +1,35 @@
-const fs = require('fs')
-const path = require('path')
-const timePath = path.join(__dirname, 'time')
-fs.readdir(timePath, (err, dir) => {
+const path = require('path');
+const fs = require('fs');
+
+const dirPath = path.join(__dirname, 'time');
+console.log(dirPath);
+
+function readDir(pathName) {
+    fs.readdir(pathName, (err, files) => {
         if (err) {
             console.log(err);
             return;
         }
-        for (const filePath of dir) {
-            const fullPathDir = path.join(timePath, filePath)
-            fs.readdir(fullPathDir, (err1, files) => {
+        files.forEach((fileName) => {
+            const pathFile = path.join(pathName, fileName);
+
+            fs.stat(pathFile, (err1, stats) => {
                 if (err1) {
                     console.log(err1);
+                    return;
                 }
-                for (const file of files) {
-                    const fullPathFile = path.join(fullPathDir, file)
-                    fs.readFile(fullPathFile,(err2, data) => {
-                        if (err2){
-                            console.log(err2);
-                        }
-                        const jsonObject=JSON.parse(data.toString())
-                        const pathSixTime=path.join(timePath,'1800')
-                        const pathTwentyTime=path.join(timePath,'2000')
-                        if(jsonObject.gender==='male'){
-                            const oldPath=path.join(pathSixTime,file)
-                            const newPath=path.join(pathTwentyTime,file)
-                            fs.rename(oldPath,newPath,err3 => {
-                                if (err3){
-                                    console.log(err3);
-                                }
-                            })
-
-                        } else {
-                            const newPath=path.join(pathSixTime,file)
-                            const oldPath=path.join(pathTwentyTime,file)
-                            fs.rename(oldPath,newPath,err3 => {
-                                if (err3){
-                                    console.log(err3);
-                                }
-                            })
-                        }
-                    })
+                if (stats.isDirectory()) {
+                    return readDir(pathFile);
                 }
-            })
-        }
-    }
-)
+                const newPath = path.join(__dirname, 'time', fileName);
+                fs.rename(pathFile, newPath, (err2) => {
+                    if (err2) {
+                        console.log(err2);
+                    }
+                });
+            });
+        });
+    });
+}
 
-
+readDir(dirPath);
