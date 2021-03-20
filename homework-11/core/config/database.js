@@ -1,4 +1,4 @@
-const { LOGIN_SQL, URL_SQL, PASSWORD_SQL } = require('./config');
+const { LOGIN_SQL, PASSWORD_SQL, URL_SQL } = require('./config');
 
 module.exports = {
     development: {

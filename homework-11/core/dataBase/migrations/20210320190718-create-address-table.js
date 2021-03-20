@@ -7,25 +7,21 @@ module.exports = {
          * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
          */
         await queryInterface.createTable(
-            'o_auth',
+            'addresses',
             {
                 id: {
                     type: Sequelize.DataTypes.INTEGER,
                     primaryKey: true,
                     autoIncrement: true,
                 },
-                access_token: {
+                city: {
                     type: Sequelize.DataTypes.STRING,
                     allowNull: true,
                 },
-                refresh_token: {
+                street: {
                     type: Sequelize.DataTypes.STRING,
                     allowNull: true,
                 },
-                user_id: {
-                    type: Sequelize.DataTypes.STRING,
-                    allowNull: true
-                }
             }
         );
     },
@@ -37,6 +33,6 @@ module.exports = {
          * Example:
          * await queryInterface.dropTable('users');
          */
-        await queryInterface.dropTable('o_auth');
+        await queryInterface.dropTable('addresses');
     }
 };
