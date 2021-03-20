@@ -1,6 +1,7 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv')
+    .config();
 const path = require('path');
 
 const { apiRouter, notFound } = require('./routes');
@@ -8,11 +9,11 @@ const { sequelize } = require('./dataBase');
 const { PORT } = require('./config/config');
 
 const app = express();
-console.log(process.cwd());
+
 app.use(express.json());
 app.use(fileUpload());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(process.cwd(), 'homework-8', 'core', 'static')));
+app.use(express.static(path.join(process.cwd(), 'homework-11', 'core', 'static')));
 
 app.use('/', apiRouter);
 app.use('*', notFound);
