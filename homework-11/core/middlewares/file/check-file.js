@@ -13,6 +13,7 @@ const { ErrorHandler, errorMessage: { MAX_SIZE_DOC, FILE_NOT_VALID }, errorCode 
 module.exports = (req, res, next) => {
     try {
         const { files } = req;
+        console.log(req.files);
 
         const docs = [];
         const photos = [];

@@ -24,14 +24,20 @@ module.exports = {
         };
     },
     getSingleUser: (query) => UserModel.findOne({ where: query }),
-    createUser: (object) => UserModel.create(object),
-    updateUser: async (query, updateBody) => {
+    createUser: async (object, transaction) => {
+        const user = await UserModel.create(object, { transaction });
+        return user;
+    },
+    updateUser: async (query, updateBody, transaction) => {
         const {
             limit, keys, filters, page
         } = baseQueryBuilder(query);
         const objectFilter = userObjectFilter(filters, keys);
 
-        const user = await UserModel.update(updateBody, { where: objectFilter });
+        const user = await UserModel.update(updateBody, {
+            where: objectFilter,
+            transaction
+        });
         const count = await UserModel.count(objectFilter);
 
         return {
@@ -42,5 +48,8 @@ module.exports = {
             pages: Math.ceil(limit / count)
         };
     },
-    removeUser: (id) => UserModel.destroy({ where: { id } }),
+    removeUser: (id, transaction) => UserModel.destroy({
+        where: { id },
+        transaction
+    }),
 };
