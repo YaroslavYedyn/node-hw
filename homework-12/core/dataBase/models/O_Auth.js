@@ -23,6 +23,8 @@ O_Auth.init({
         type: DataTypes.STRING,
         allowNull: true
     },
-}, { sequelize });
+}, {
+    sequelize
+});
 
 module.exports = O_Auth;

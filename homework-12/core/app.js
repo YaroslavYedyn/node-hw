@@ -7,6 +7,7 @@ const path = require('path');
 const { apiRouter, notFound } = require('./routes');
 const { sequelize } = require('./dataBase');
 const { PORT } = require('./config/config');
+const cronRun = require('./cron-jobs');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('*', (err, req, res, next) => {
 sequelize.sync({ alter: true })
     .then(() => app.listen(PORT, () => {
         console.log(`App listen ${PORT}`);
+        cronRun();
     }));
 
 console.log(dotenv);
