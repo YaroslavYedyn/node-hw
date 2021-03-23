@@ -10,6 +10,7 @@ const {
     fileService
 } = require('../services');
 const { sequelize } = require('../dataBase');
+const logger = require('../logger')();
 
 module.exports = {
     findUser: async (req, res, next) => {
@@ -57,6 +58,8 @@ module.exports = {
             });
 
             await transaction.commit();
+
+            logger.info(successMessage.CREATE.customCode);
             res.status(200)
                 .json('Please check email');
         } catch (e) {
@@ -81,6 +84,8 @@ module.exports = {
             await userService.updateUser(query, body, transaction);
 
             await transaction.commit();
+
+            logger.info(successMessage.UPDATE.customCode);
             res.json(successMessage.UPDATE);
         } catch (e) {
             await transaction.rollback();
@@ -96,6 +101,8 @@ module.exports = {
             await userService.updateUser({ email }, { password: newHashPassword }, transaction);
 
             await transaction.commit();
+
+            logger.info(successMessage.UPDATE.customCode);
             res.json(successMessage.UPDATE);
         } catch (e) {
             await transaction.rollback();
@@ -113,6 +120,8 @@ module.exports = {
             await emailService.sendMail(email, emailActions.DELETE, { name });
 
             await transaction.commit();
+
+            logger.info(successMessage.REMOVE.customCode);
             res.json(successMessage.REMOVE);
         } catch (e) {
             await transaction.rollback();

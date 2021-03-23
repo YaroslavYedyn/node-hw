@@ -1,0 +1,45 @@
+{
+  "status": 403,
+  "customCode": 4004,
+  "level": "error"
+}
+{
+  "message": "Tets logger",
+  "code": 4004,
+  "level": "error"
+}
+{
+  "message": "Tets logger",
+  "code": 4004,
+  "level": "error"
+}
+{
+  "message": "Tets logger",
+  "code": 4004,
+  "level": "error",
+  "timestamp": "2021-03-23 17:40:27"
+}
+{
+  "message": "Tets logger",
+  "code": 4004,
+  "level": "error",
+  "timestamp": "2021-03-23 17:43:14"
+}
+{
+  "message": "Tets logger",
+  "code": 4004,
+  "level": "error",
+  "timestamp": "2021-03-23"
+}
+{
+  "message": "Tets logger",
+  "code": 4004,
+  "level": "error",
+  "timestamp": "2021-03-23 17:45:17"
+}
+{
+  "message": "Tets logger",
+  "code": 4004,
+  "level": "error",
+  "timestamp": "2021-03-23 17:46:17"
+}

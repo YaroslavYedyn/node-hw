@@ -2,6 +2,7 @@ const { addressService, fileService } = require('../services');
 const { successMessage } = require('../Error');
 const { constants: { PHOTOS_FOLDER_NAME, DOCUMENT_FOLDER_NAME } } = require('../constants');
 const { sequelize } = require('../dataBase');
+const logger = require('../logger')();
 
 module.exports = {
     findAddress: async (req, res, next) => {
@@ -44,6 +45,8 @@ module.exports = {
             }
 
             await transaction.commit();
+
+            logger.info(successMessage.CREATE.customCode);
             res.json(successMessage.CREATE);
         } catch (e) {
             await transaction.rollback();
@@ -69,6 +72,8 @@ module.exports = {
                 await addressService.updateAddress({ id: address.id }, { $set: { docs: docsArr } }, transaction);
             }
             await transaction.commit();
+
+            logger.info(successMessage.UPDATE.customCode);
             res.json(successMessage.UPDATE);
         } catch (e) {
             transaction.rollback();
@@ -81,6 +86,8 @@ module.exports = {
             await addressService.removeAddress(req.params.id, transaction);
 
             await transaction.commit();
+
+            logger.info(successMessage.REMOVE.customCode);
             res.json(successMessage.REMOVE);
         } catch (e) {
             await transaction.rollback();
