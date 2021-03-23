@@ -13,9 +13,8 @@ module.exports = async (req, res, next) => {
             throw new ErrorHandler(errorCode.BAD_REQUEST, NO_TOKEN.customCode);
         }
 
-        console.log(token);
         const { dataValues } = await authService.getTokenByParams({ refresh_token: token }, 'user_id');
-        console.log(dataValues);
+
         if (!dataValues) {
             throw new ErrorHandler(errorCode.BAD_REQUEST, WRONG_TOKEN.customCode);
         }

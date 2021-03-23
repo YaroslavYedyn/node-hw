@@ -1,5 +1,6 @@
 const { userService } = require('../services');
 const { sequelize } = require('../dataBase');
+const logger = require('../logger')();
 
 module.exports = {
     activatedAccount: async (req, res, next) => {
@@ -12,6 +13,8 @@ module.exports = {
             }, transaction);
 
             await transaction.commit();
+
+            logger.info('Account Activated');
             res.json('YOUR ACCOUNT ACTIVATED');
         } catch (e) {
             await transaction.rollback();
