@@ -8,6 +8,11 @@ module.exports = {
         CITY: 'city',
         STREET: 'street',
         HOUSE: 'house'
+    },
+    ROLE: {
+        USER: process.env.USER_ROLE || 'user',
+        ADMIN: process.env.ADMIN_ROLE || 'ADMIN',
+        SUPER_ADMIN: process.env.SUPER_ADMIN_ROLE || 'superPuperAdmin'
     }
 
 };

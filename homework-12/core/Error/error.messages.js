@@ -4,7 +4,6 @@ module.exports = {
     BAD_REQUEST: {
         customCode: 4000
     },
-
     TOO_WEAK_PASSWORD: {
         customCode: 4001
     },
@@ -40,6 +39,11 @@ module.exports = {
         customCode: 4011
     },
 
+    // FORBIDDEN
+
+    USER_ROLE_NOT_FOUND: {
+        customCode: 4031
+    },
     // NOT FOUND
     RECORD_NOT_FOUND: {
         customCode: 4041
